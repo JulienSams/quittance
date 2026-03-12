@@ -21,6 +21,8 @@ import { cn } from '@/lib/utils'
 import { generateReceiptBatch, generateZipFilename } from '@/lib/batch-generator'
 import { validateBatchGeneration } from '@/lib/validation'
 import { useState } from 'react'
+import { ConfigManager } from '@/components/ConfigManager'
+import { saveConfig, loadConfig, deleteConfig } from '@/lib/config-storage'
 
 export function ReceiptForm() {
   const { formData, errors, isSaving, saveSuccess, updateField, updateDateField, handleBlur, save, resetForm } = useReceiptForm()
@@ -81,12 +83,29 @@ export function ReceiptForm() {
     <>
       <div className="bg-white border border-stone-200 mb-32">
         <div className="p-8 sm:p-12 border-b border-stone-200">
-          <h2 className="text-3xl font-light tracking-tight text-stone-900 mb-3">
-            Informations
-          </h2>
-          <p className="text-stone-600 font-light">
-            Complétez les informations ci-dessous pour générer vos quittances
-          </p>
+          <div className="flex items-start justify-between gap-4 mb-6">
+            <div>
+              <h2 className="text-3xl font-light tracking-tight text-stone-900 mb-3">
+                Informations
+              </h2>
+              <p className="text-stone-600 font-light">
+                Complétez les informations ci-dessous pour générer vos quittances
+              </p>
+            </div>
+            <ConfigManager
+              onSave={(name) => saveConfig(name, formData)}
+              onLoad={(name) => {
+                const data = loadConfig(name)
+                if (data) {
+                  // Reload form with loaded data
+                  window.location.reload()
+                  // Store the config name to load after reload
+                  sessionStorage.setItem('quittance-load-config', name)
+                }
+              }}
+              onDelete={(name) => deleteConfig(name)}
+            />
+          </div>
         </div>
 
       <Accordion type="single" collapsible defaultValue="proprietaire" className="divide-y divide-stone-200">
