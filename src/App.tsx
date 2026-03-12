@@ -1,5 +1,4 @@
 import { ReceiptForm } from '@/components/ReceiptForm'
-import { TestCalendar } from '@/components/TestCalendar'
 
 function App() {
   return (
@@ -11,8 +10,6 @@ function App() {
             Application de génération de quittances de loyer pour locations meublées en France
           </p>
         </div>
-
-        <TestCalendar />
 
         <ReceiptForm />
 
