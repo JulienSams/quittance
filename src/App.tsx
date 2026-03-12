@@ -1,18 +1,6 @@
 import { ReceiptForm } from '@/components/ReceiptForm'
-import { Button } from '@/components/ui/button'
-import { testPDFGeneration } from '@/test-receipt-pdf'
 
 function App() {
-  const handleTestPDF = async () => {
-    try {
-      await testPDFGeneration()
-      alert('PDFs de test générés ! Vérifiez vos téléchargements.')
-    } catch (error) {
-      console.error('Erreur lors de la génération des PDFs de test:', error)
-      alert('Erreur lors de la génération. Voir la console pour les détails.')
-    }
-  }
-
   return (
     <div className="min-h-screen bg-[#fafaf9]">
       {/* Hero Section - Style Squarespace */}
