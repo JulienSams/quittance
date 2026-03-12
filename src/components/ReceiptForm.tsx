@@ -8,10 +8,20 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { Calendar } from '@/components/ui/calendar'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
 import { useReceiptForm } from '@/hooks/useReceiptForm'
+import { format } from 'date-fns'
+import { fr } from 'date-fns/locale'
+import { CalendarIcon } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 export function ReceiptForm() {
-  const { formData, errors, isSaving, saveSuccess, updateField, handleBlur, save, resetForm } = useReceiptForm()
+  const { formData, errors, isSaving, saveSuccess, updateField, updateDateField, handleBlur, save, resetForm } = useReceiptForm()
 
   return (
     <>
@@ -224,6 +234,83 @@ export function ReceiptForm() {
 
             <div className="pt-2 text-lg font-semibold">
               Total: {(formData.loyer.loyerHorsCharges + formData.loyer.charges).toFixed(2)} €
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+
+        {/* Section 5: Période de génération */}
+        <AccordionItem value="periode">
+          <AccordionTrigger>Période de génération</AccordionTrigger>
+          <AccordionContent className="space-y-4 pt-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="date-debut">Date de début *</Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      id="date-debut"
+                      variant="outline"
+                      className={cn(
+                        "w-full justify-start text-left font-normal",
+                        !formData.dateDebut && "text-muted-foreground",
+                        errors.dateRange && "border-red-600"
+                      )}
+                    >
+                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      {formData.dateDebut ? (
+                        format(formData.dateDebut, 'd MMMM yyyy', { locale: fr })
+                      ) : (
+                        <span>Sélectionner une date</span>
+                      )}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0">
+                    <Calendar
+                      mode="single"
+                      selected={formData.dateDebut}
+                      onSelect={(date) => updateDateField('dateDebut', date)}
+                      locale={fr}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+                {errors.dateRange && (
+                  <p className="text-sm text-red-600 mt-1">{errors.dateRange}</p>
+                )}
+              </div>
+
+              <div>
+                <Label htmlFor="date-fin">Date de fin *</Label>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      id="date-fin"
+                      variant="outline"
+                      className={cn(
+                        "w-full justify-start text-left font-normal",
+                        !formData.dateFin && "text-muted-foreground",
+                        errors.dateRange && "border-red-600"
+                      )}
+                    >
+                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      {formData.dateFin ? (
+                        format(formData.dateFin, 'd MMMM yyyy', { locale: fr })
+                      ) : (
+                        <span>Sélectionner une date</span>
+                      )}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0">
+                    <Calendar
+                      mode="single"
+                      selected={formData.dateFin}
+                      onSelect={(date) => updateDateField('dateFin', date)}
+                      locale={fr}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
+              </div>
             </div>
           </AccordionContent>
         </AccordionItem>

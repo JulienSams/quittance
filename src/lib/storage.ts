@@ -4,7 +4,13 @@ const STORAGE_KEY = 'quittance-receipt-data'
 
 export function saveReceiptData(data: ReceiptData): void {
   try {
-    const json = JSON.stringify(data)
+    // Serialize dates to ISO strings
+    const dataToSave = {
+      ...data,
+      dateDebut: data.dateDebut?.toISOString(),
+      dateFin: data.dateFin?.toISOString(),
+    }
+    const json = JSON.stringify(dataToSave)
     localStorage.setItem(STORAGE_KEY, json)
   } catch (error) {
     console.error('Failed to save data:', error)
@@ -19,6 +25,15 @@ export function loadReceiptData(): ReceiptData | null {
     if (!json) return null
 
     const data = JSON.parse(json)
+
+    // Deserialize ISO strings back to Date objects
+    if (data.dateDebut) {
+      data.dateDebut = new Date(data.dateDebut)
+    }
+    if (data.dateFin) {
+      data.dateFin = new Date(data.dateFin)
+    }
+
     return data
   } catch (error) {
     console.error('Failed to load data:', error)

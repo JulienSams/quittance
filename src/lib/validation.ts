@@ -6,6 +6,7 @@ export interface ValidationErrors {
   locataire?: Record<string, string>
   bien?: Record<string, string>
   loyer?: Record<string, string>
+  dateRange?: string
 }
 
 export function validateField(
@@ -70,4 +71,23 @@ export function hasErrors(errors: ValidationErrors): boolean {
   return Object.values(errors).some(
     (sectionErrors) => sectionErrors && Object.keys(sectionErrors).length > 0
   )
+}
+
+export function validateDateRange(
+  dateDebut: Date | undefined,
+  dateFin: Date | undefined
+): string | null {
+  // Both or neither
+  if ((dateDebut && !dateFin) || (!dateDebut && dateFin)) {
+    return 'Les deux dates doivent être renseignées'
+  }
+
+  // If both exist, check start is before end
+  if (dateDebut && dateFin) {
+    if (dateDebut > dateFin) {
+      return 'La date de début doit être antérieure à la date de fin'
+    }
+  }
+
+  return null
 }
