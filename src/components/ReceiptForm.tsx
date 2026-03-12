@@ -93,14 +93,14 @@ export function ReceiptForm() {
 
   return (
     <>
-      <div className="bg-white border border-stone-200 mb-32">
-        <div className="p-8 sm:p-12 border-b border-stone-200">
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+      <div className="bg-white border border-stone-200 rounded-lg shadow-sm mb-32 overflow-hidden">
+        <div className="bg-gradient-to-r from-blue-50 to-violet-50 p-6 sm:p-8 border-b border-blue-100">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex-1">
-              <h2 className="text-3xl font-light tracking-tight text-stone-900 mb-3">
+              <h2 className="text-2xl sm:text-3xl font-light tracking-tight bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent mb-2">
                 Informations
               </h2>
-              <p className="text-stone-600 font-light">
+              <p className="text-stone-600 font-light text-sm sm:text-base">
                 Complétez les informations ci-dessous pour générer vos quittances
               </p>
             </div>
@@ -443,9 +443,9 @@ export function ReceiptForm() {
       </Accordion>
 
       {/* Batch Generation Section */}
-      <div className="px-8 sm:px-12 py-8 border-t border-stone-200 bg-stone-50/30 space-y-4">
+      <div className="px-8 sm:px-12 py-8 border-t border-blue-100 bg-gradient-to-br from-blue-50/50 to-violet-50/50 space-y-4">
         <div className="space-y-2">
-          <h3 className="text-lg font-light text-stone-900">Génération des documents</h3>
+          <h3 className="text-lg font-light bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">Génération des documents</h3>
           <p className="text-sm text-stone-600 font-light">
             Téléchargez toutes vos quittances au format PDF
           </p>
@@ -455,7 +455,7 @@ export function ReceiptForm() {
           type="button"
           onClick={handleGenerateBatch}
           disabled={isGenerating || !formData.dateDebut || !formData.dateFin}
-          className="w-full bg-stone-900 hover:bg-stone-800 text-white font-light transition-colors"
+          className="w-full bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white font-light transition-all shadow-md hover:shadow-lg"
           size="lg"
         >
           {isGenerating ? 'Génération en cours...' : 'Générer les quittances'}
@@ -481,11 +481,11 @@ export function ReceiptForm() {
       </div>
 
       {/* Sticky save button at bottom */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-stone-200 p-6 z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-blue-100 p-6 z-50 shadow-lg">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             {saveSuccess && (
-              <div className="flex items-center gap-2 text-stone-600 font-light">
+              <div className="flex items-center gap-2 text-green-600 font-light bg-green-50 px-3 py-1.5 rounded-full">
                 <Check className="h-4 w-4" />
                 <span className="text-sm">
                   Données sauvegardées
@@ -508,7 +508,7 @@ export function ReceiptForm() {
               onClick={save}
               disabled={isSaving}
               size="lg"
-              className="bg-stone-900 hover:bg-stone-800 text-white font-light transition-colors"
+              className="bg-gradient-to-r from-blue-600 to-violet-600 hover:from-blue-700 hover:to-violet-700 text-white font-light transition-all shadow-md hover:shadow-lg"
             >
               {isSaving ? 'Enregistrement...' : 'Enregistrer'}
             </Button>
