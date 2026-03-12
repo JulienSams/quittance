@@ -102,6 +102,8 @@ export function ReceiptForm() {
                 <Label htmlFor="prop-nom">Nom *</Label>
                 <Input
                   id="prop-nom"
+                  name="family-name"
+                  autoComplete="family-name"
                   value={formData.proprietaire.nom}
                   onChange={(e) => updateField('proprietaire', 'nom', e.target.value)}
                   onBlur={() => handleBlur('proprietaire', 'nom')}
@@ -115,6 +117,8 @@ export function ReceiptForm() {
                 <Label htmlFor="prop-prenom">Prénom *</Label>
                 <Input
                   id="prop-prenom"
+                  name="given-name"
+                  autoComplete="given-name"
                   value={formData.proprietaire.prenom}
                   onChange={(e) => updateField('proprietaire', 'prenom', e.target.value)}
                   onBlur={() => handleBlur('proprietaire', 'prenom')}
@@ -130,6 +134,8 @@ export function ReceiptForm() {
               <Label htmlFor="prop-adresse">Adresse *</Label>
               <Input
                 id="prop-adresse"
+                name="street-address"
+                autoComplete="street-address"
                 value={formData.proprietaire.adresse}
                 onChange={(e) => updateField('proprietaire', 'adresse', e.target.value)}
                 onBlur={() => handleBlur('proprietaire', 'adresse')}
@@ -145,6 +151,8 @@ export function ReceiptForm() {
                 <Label htmlFor="prop-cp">Code postal *</Label>
                 <Input
                   id="prop-cp"
+                  name="postal-code"
+                  autoComplete="postal-code"
                   value={formData.proprietaire.codePostal}
                   onChange={(e) => updateField('proprietaire', 'codePostal', e.target.value)}
                   onBlur={() => handleBlur('proprietaire', 'codePostal')}
@@ -159,6 +167,8 @@ export function ReceiptForm() {
                 <Label htmlFor="prop-ville">Ville *</Label>
                 <Input
                   id="prop-ville"
+                  name="address-level2"
+                  autoComplete="address-level2"
                   value={formData.proprietaire.ville}
                   onChange={(e) => updateField('proprietaire', 'ville', e.target.value)}
                   onBlur={() => handleBlur('proprietaire', 'ville')}
