@@ -22,6 +22,8 @@ import { generateReceiptBatch, generateZipFilename } from '@/lib/batch-generator
 import { validateBatchGeneration } from '@/lib/validation'
 import { useState } from 'react'
 import { ConfigManager } from '@/components/ConfigManager'
+import { saveGenerationToHistory } from '@/lib/history-storage'
+import type { GenerationHistory } from '@/types/history'
 
 export function ReceiptForm() {
   const {
@@ -81,6 +83,30 @@ export function ReceiptForm() {
       link.download = filename
       link.click()
       URL.revokeObjectURL(url)
+
+      // Save to history
+      if (formData.dateDebut && formData.dateFin) {
+        const historyItem: GenerationHistory = {
+          id: `gen-${Date.now()}`,
+          generatedAt: new Date(),
+          proprietaire: {
+            nom: formData.proprietaire.nom,
+            prenom: formData.proprietaire.prenom,
+          },
+          locataire: {
+            nom: formData.locataire.nom,
+            prenom: formData.locataire.prenom,
+          },
+          periode: {
+            debut: formData.dateDebut,
+            fin: formData.dateFin,
+          },
+          nombreQuittances: total,
+          zipBlob,
+          zipFilename: filename,
+        }
+        await saveGenerationToHistory(historyItem)
+      }
 
       setIsGenerating(false)
     } catch (err) {

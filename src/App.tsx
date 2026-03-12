@@ -1,4 +1,5 @@
 import { ReceiptForm } from '@/components/ReceiptForm'
+import { HistoryViewer } from '@/components/HistoryViewer'
 
 function App() {
   return (
@@ -27,8 +28,21 @@ function App() {
       </section>
 
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-6 sm:px-12 py-16 sm:py-20">
+      <div className="max-w-4xl mx-auto px-6 sm:px-12 py-16 sm:py-20 space-y-16">
         <ReceiptForm />
+
+        {/* History Section */}
+        <section className="space-y-6">
+          <div className="space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
+              Historique
+            </h2>
+            <p className="text-stone-500 text-base">
+              Retrouvez et téléchargez vos générations précédentes
+            </p>
+          </div>
+          <HistoryViewer />
+        </section>
       </div>
     </div>
   )
