@@ -10,7 +10,7 @@ import { Card } from '@/components/ui/card'
 import { useReceiptForm } from '@/hooks/useReceiptForm'
 
 export function ReceiptForm() {
-  const { formData, updateField } = useReceiptForm()
+  const { formData, errors, updateField, handleBlur } = useReceiptForm()
 
   return (
     <Card className="p-6">
@@ -30,7 +30,12 @@ export function ReceiptForm() {
                   id="prop-nom"
                   value={formData.proprietaire.nom}
                   onChange={(e) => updateField('proprietaire', 'nom', e.target.value)}
+                  onBlur={() => handleBlur('proprietaire', 'nom')}
+                  className={errors.proprietaire?.nom ? 'border-red-600' : ''}
                 />
+                {errors.proprietaire?.nom && (
+                  <p className="text-sm text-red-600 mt-1">{errors.proprietaire.nom}</p>
+                )}
               </div>
               <div>
                 <Label htmlFor="prop-prenom">Prénom *</Label>
@@ -38,7 +43,12 @@ export function ReceiptForm() {
                   id="prop-prenom"
                   value={formData.proprietaire.prenom}
                   onChange={(e) => updateField('proprietaire', 'prenom', e.target.value)}
+                  onBlur={() => handleBlur('proprietaire', 'prenom')}
+                  className={errors.proprietaire?.prenom ? 'border-red-600' : ''}
                 />
+                {errors.proprietaire?.prenom && (
+                  <p className="text-sm text-red-600 mt-1">{errors.proprietaire.prenom}</p>
+                )}
               </div>
             </div>
 
@@ -48,7 +58,12 @@ export function ReceiptForm() {
                 id="prop-adresse"
                 value={formData.proprietaire.adresse}
                 onChange={(e) => updateField('proprietaire', 'adresse', e.target.value)}
+                onBlur={() => handleBlur('proprietaire', 'adresse')}
+                className={errors.proprietaire?.adresse ? 'border-red-600' : ''}
               />
+              {errors.proprietaire?.adresse && (
+                <p className="text-sm text-red-600 mt-1">{errors.proprietaire.adresse}</p>
+              )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -58,8 +73,13 @@ export function ReceiptForm() {
                   id="prop-cp"
                   value={formData.proprietaire.codePostal}
                   onChange={(e) => updateField('proprietaire', 'codePostal', e.target.value)}
+                  onBlur={() => handleBlur('proprietaire', 'codePostal')}
                   maxLength={5}
+                  className={errors.proprietaire?.codePostal ? 'border-red-600' : ''}
                 />
+                {errors.proprietaire?.codePostal && (
+                  <p className="text-sm text-red-600 mt-1">{errors.proprietaire.codePostal}</p>
+                )}
               </div>
               <div className="md:col-span-2">
                 <Label htmlFor="prop-ville">Ville *</Label>
@@ -67,7 +87,12 @@ export function ReceiptForm() {
                   id="prop-ville"
                   value={formData.proprietaire.ville}
                   onChange={(e) => updateField('proprietaire', 'ville', e.target.value)}
+                  onBlur={() => handleBlur('proprietaire', 'ville')}
+                  className={errors.proprietaire?.ville ? 'border-red-600' : ''}
                 />
+                {errors.proprietaire?.ville && (
+                  <p className="text-sm text-red-600 mt-1">{errors.proprietaire.ville}</p>
+                )}
               </div>
             </div>
           </AccordionContent>
@@ -84,7 +109,12 @@ export function ReceiptForm() {
                   id="loc-nom"
                   value={formData.locataire.nom}
                   onChange={(e) => updateField('locataire', 'nom', e.target.value)}
+                  onBlur={() => handleBlur('locataire', 'nom')}
+                  className={errors.locataire?.nom ? 'border-red-600' : ''}
                 />
+                {errors.locataire?.nom && (
+                  <p className="text-sm text-red-600 mt-1">{errors.locataire.nom}</p>
+                )}
               </div>
               <div>
                 <Label htmlFor="loc-prenom">Prénom *</Label>
@@ -92,7 +122,12 @@ export function ReceiptForm() {
                   id="loc-prenom"
                   value={formData.locataire.prenom}
                   onChange={(e) => updateField('locataire', 'prenom', e.target.value)}
+                  onBlur={() => handleBlur('locataire', 'prenom')}
+                  className={errors.locataire?.prenom ? 'border-red-600' : ''}
                 />
+                {errors.locataire?.prenom && (
+                  <p className="text-sm text-red-600 mt-1">{errors.locataire.prenom}</p>
+                )}
               </div>
             </div>
           </AccordionContent>
@@ -108,7 +143,12 @@ export function ReceiptForm() {
                 id="bien-adresse"
                 value={formData.bien.adresse}
                 onChange={(e) => updateField('bien', 'adresse', e.target.value)}
+                onBlur={() => handleBlur('bien', 'adresse')}
+                className={errors.bien?.adresse ? 'border-red-600' : ''}
               />
+              {errors.bien?.adresse && (
+                <p className="text-sm text-red-600 mt-1">{errors.bien.adresse}</p>
+              )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -118,8 +158,13 @@ export function ReceiptForm() {
                   id="bien-cp"
                   value={formData.bien.codePostal}
                   onChange={(e) => updateField('bien', 'codePostal', e.target.value)}
+                  onBlur={() => handleBlur('bien', 'codePostal')}
                   maxLength={5}
+                  className={errors.bien?.codePostal ? 'border-red-600' : ''}
                 />
+                {errors.bien?.codePostal && (
+                  <p className="text-sm text-red-600 mt-1">{errors.bien.codePostal}</p>
+                )}
               </div>
               <div className="md:col-span-2">
                 <Label htmlFor="bien-ville">Ville *</Label>
@@ -127,7 +172,12 @@ export function ReceiptForm() {
                   id="bien-ville"
                   value={formData.bien.ville}
                   onChange={(e) => updateField('bien', 'ville', e.target.value)}
+                  onBlur={() => handleBlur('bien', 'ville')}
+                  className={errors.bien?.ville ? 'border-red-600' : ''}
                 />
+                {errors.bien?.ville && (
+                  <p className="text-sm text-red-600 mt-1">{errors.bien.ville}</p>
+                )}
               </div>
             </div>
           </AccordionContent>
@@ -146,7 +196,12 @@ export function ReceiptForm() {
                   step="0.01"
                   value={formData.loyer.loyerHorsCharges}
                   onChange={(e) => updateField('loyer', 'loyerHorsCharges', parseFloat(e.target.value) || 0)}
+                  onBlur={() => handleBlur('loyer', 'loyerHorsCharges')}
+                  className={errors.loyer?.loyerHorsCharges ? 'border-red-600' : ''}
                 />
+                {errors.loyer?.loyerHorsCharges && (
+                  <p className="text-sm text-red-600 mt-1">{errors.loyer.loyerHorsCharges}</p>
+                )}
               </div>
               <div>
                 <Label htmlFor="loyer-charges">Charges (€) *</Label>
@@ -156,7 +211,12 @@ export function ReceiptForm() {
                   step="0.01"
                   value={formData.loyer.charges}
                   onChange={(e) => updateField('loyer', 'charges', parseFloat(e.target.value) || 0)}
+                  onBlur={() => handleBlur('loyer', 'charges')}
+                  className={errors.loyer?.charges ? 'border-red-600' : ''}
                 />
+                {errors.loyer?.charges && (
+                  <p className="text-sm text-red-600 mt-1">{errors.loyer.charges}</p>
+                )}
               </div>
             </div>
 
