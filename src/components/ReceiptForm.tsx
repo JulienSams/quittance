@@ -17,7 +17,7 @@ import {
 import { useReceiptForm } from '@/hooks/useReceiptForm'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import { CalendarIcon } from 'lucide-react'
+import { CalendarIcon, Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { generateReceiptBatch, generateZipFilename } from '@/lib/batch-generator'
 import { validateBatchGeneration } from '@/lib/validation'
@@ -429,6 +429,12 @@ export function ReceiptForm() {
               {isSaving ? 'Enregistrement...' : 'Enregistrer'}
             </Button>
           </div>
+          {saveSuccess && (
+            <p className="text-sm text-green-600 flex items-center gap-2">
+              <Check className="h-4 w-4" />
+              Données sauvegardées
+            </p>
+          )}
         </div>
       </div>
     </>
