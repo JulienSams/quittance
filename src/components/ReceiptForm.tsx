@@ -506,40 +506,32 @@ export function ReceiptForm() {
       </div>
       </div>
 
-      {/* Save button at bottom */}
-      <div className="mt-8 bg-white/95 backdrop-blur border-t border-teal-100 p-6 shadow-lg rounded-lg">
-        <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            {saveSuccess && (
-              <div className="flex items-center gap-2 text-emerald-600 font-light bg-emerald-50 px-3 py-1.5 rounded-full">
-                <Check className="h-4 w-4" />
-                <span className="text-sm">
-                  Données sauvegardées
-                </span>
-              </div>
-            )}
+      {/* Sticky action buttons */}
+      <div className="fixed bottom-6 right-6 flex flex-col sm:flex-row gap-3 z-50">
+        {saveSuccess && (
+          <div className="hidden sm:flex items-center gap-2 text-emerald-600 font-light bg-emerald-50 px-3 py-2 rounded-full shadow-lg border border-emerald-200">
+            <Check className="h-4 w-4" />
+            <span className="text-sm">Sauvegardé</span>
           </div>
-
-          <div className="flex gap-3">
-            <Button
-              onClick={handleReset}
-              variant="outline"
-              size="lg"
-              disabled={isSaving}
-              className="border-stone-300 hover:bg-stone-50 font-light"
-            >
-              Réinitialiser
-            </Button>
-            <Button
-              onClick={save}
-              disabled={isSaving}
-              size="lg"
-              className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-light transition-all shadow-md hover:shadow-lg"
-            >
-              {isSaving ? 'Enregistrement...' : 'Enregistrer'}
-            </Button>
-          </div>
-        </div>
+        )}
+        <Button
+          onClick={handleReset}
+          variant="outline"
+          size="lg"
+          disabled={isSaving}
+          className="border-stone-300 hover:bg-stone-50 font-light shadow-lg bg-white"
+        >
+          <span className="hidden sm:inline">Réinitialiser</span>
+          <span className="sm:hidden">Reset</span>
+        </Button>
+        <Button
+          onClick={save}
+          disabled={isSaving}
+          size="lg"
+          className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-light transition-all shadow-lg hover:shadow-xl"
+        >
+          {isSaving ? 'Enregistrement...' : 'Enregistrer'}
+        </Button>
       </div>
     </>
   )
