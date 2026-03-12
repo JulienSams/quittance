@@ -83,7 +83,7 @@ export function ReceiptForm() {
         {/* Section 1: Propriétaire */}
         <AccordionItem value="proprietaire">
           <AccordionTrigger>Propriétaire</AccordionTrigger>
-          <AccordionContent className="space-y-4 pt-4">
+          <AccordionContent className="space-y-4 pt-4 bg-muted/5 rounded-md px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="prop-nom">Nom *</Label>
@@ -162,7 +162,7 @@ export function ReceiptForm() {
         {/* Section 2: Locataire */}
         <AccordionItem value="locataire">
           <AccordionTrigger>Locataire</AccordionTrigger>
-          <AccordionContent className="space-y-4 pt-4">
+          <AccordionContent className="space-y-4 pt-4 bg-muted/5 rounded-md px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="loc-nom">Nom *</Label>
@@ -197,7 +197,7 @@ export function ReceiptForm() {
         {/* Section 3: Bien */}
         <AccordionItem value="bien">
           <AccordionTrigger>Bien loué</AccordionTrigger>
-          <AccordionContent className="space-y-4 pt-4">
+          <AccordionContent className="space-y-4 pt-4 bg-muted/5 rounded-md px-4">
             <div>
               <Label htmlFor="bien-adresse">Adresse *</Label>
               <Input
@@ -247,7 +247,7 @@ export function ReceiptForm() {
         {/* Section 4: Loyer */}
         <AccordionItem value="loyer">
           <AccordionTrigger>Loyer et charges</AccordionTrigger>
-          <AccordionContent className="space-y-4 pt-4">
+          <AccordionContent className="space-y-4 pt-4 bg-muted/5 rounded-md px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="loyer-hc">Loyer hors charges (€) *</Label>
@@ -290,7 +290,7 @@ export function ReceiptForm() {
         {/* Section 5: Période de génération */}
         <AccordionItem value="periode">
           <AccordionTrigger>Période de génération</AccordionTrigger>
-          <AccordionContent className="space-y-4 pt-4">
+          <AccordionContent className="space-y-4 pt-4 bg-muted/5 rounded-md px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="date-debut">Date de début *</Label>
