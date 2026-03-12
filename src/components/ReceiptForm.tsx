@@ -31,6 +31,12 @@ export function ReceiptForm() {
   const [progress, setProgress] = useState({ current: 0, total: 0 })
   const [generationError, setGenerationError] = useState<string | null>(null)
 
+  const handleReset = () => {
+    if (confirm('Êtes-vous sûr de vouloir réinitialiser le formulaire ? Cette action ne peut pas être annulée.')) {
+      resetForm()
+    }
+  }
+
   async function handleGenerateBatch() {
     // Reset state
     setGenerationError(null)
@@ -414,8 +420,8 @@ export function ReceiptForm() {
 
           <div className="flex gap-2">
             <Button
-              onClick={resetForm}
-              variant="outline"
+              onClick={handleReset}
+              variant="secondary"
               size="lg"
               disabled={isSaving}
             >
