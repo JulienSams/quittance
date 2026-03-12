@@ -19,9 +19,58 @@ import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
 import { CalendarIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { generateReceiptBatch, generateZipFilename } from '@/lib/batch-generator'
+import { validateBatchGeneration } from '@/lib/validation'
+import { useState } from 'react'
 
 export function ReceiptForm() {
   const { formData, errors, isSaving, saveSuccess, updateField, updateDateField, handleBlur, save, resetForm } = useReceiptForm()
+
+  // Batch generation state
+  const [isGenerating, setIsGenerating] = useState(false)
+  const [progress, setProgress] = useState({ current: 0, total: 0 })
+  const [generationError, setGenerationError] = useState<string | null>(null)
+
+  async function handleGenerateBatch() {
+    // Reset state
+    setGenerationError(null)
+    setProgress({ current: 0, total: 0 })
+
+    // Validate
+    const validation = validateBatchGeneration(formData)
+    if (!validation.valid) {
+      setGenerationError(validation.errors.join('. '))
+      return
+    }
+
+    // Generate
+    setIsGenerating(true)
+    const total = formData.monthlyReceipts?.length || 0
+    setProgress({ current: 0, total })
+
+    try {
+      const zipBlob = await generateReceiptBatch(
+        formData,
+        (current, total) => setProgress({ current, total })
+      )
+
+      // Download
+      const filename = generateZipFilename(formData)
+      const url = URL.createObjectURL(zipBlob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = filename
+      link.click()
+      URL.revokeObjectURL(url)
+
+      setIsGenerating(false)
+    } catch (err) {
+      setGenerationError(
+        err instanceof Error ? err.message : 'Erreur lors de la génération des quittances'
+      )
+      setIsGenerating(false)
+    }
+  }
 
   return (
     <>
@@ -329,6 +378,27 @@ export function ReceiptForm() {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
+
+      {/* Batch Generation Section */}
+      <div className="mt-6 space-y-2">
+        <Button
+          type="button"
+          onClick={handleGenerateBatch}
+          disabled={isGenerating || !formData.dateDebut || !formData.dateFin}
+          className="w-full"
+          size="lg"
+        >
+          {isGenerating
+            ? `Génération... ${progress.current}/${progress.total}`
+            : 'Générer les quittances'}
+        </Button>
+
+        {generationError && (
+          <p className="text-sm text-red-600">
+            {generationError}
+          </p>
+        )}
+      </div>
       </Card>
 
       {/* Sticky save button at bottom */}

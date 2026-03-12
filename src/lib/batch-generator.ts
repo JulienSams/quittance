@@ -1,6 +1,6 @@
 import JSZip from 'jszip'
 import { generateReceiptPDF } from './receipt-generator'
-import type { ReceiptData, MonthlyReceipt } from '@/types/receipt'
+import type { ReceiptData } from '@/types/receipt'
 
 /**
  * Generate a batch of receipt PDFs and package them into a ZIP file
