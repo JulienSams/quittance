@@ -7,13 +7,15 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 import { useReceiptForm } from '@/hooks/useReceiptForm'
 
 export function ReceiptForm() {
-  const { formData, errors, updateField, handleBlur } = useReceiptForm()
+  const { formData, errors, isSaving, saveSuccess, updateField, handleBlur, save, resetForm } = useReceiptForm()
 
   return (
-    <Card className="p-6">
+    <>
+      <Card className="p-6 mb-24">
       <h2 className="text-2xl font-bold mb-6">
         Informations de la quittance
       </h2>
@@ -226,6 +228,38 @@ export function ReceiptForm() {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </Card>
+      </Card>
+
+      {/* Sticky save button at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 bg-background border-t shadow-lg p-4 z-50">
+        <div className="max-w-2xl mx-auto flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            {saveSuccess && (
+              <span className="text-sm text-green-600 font-medium">
+                ✓ Données sauvegardées
+              </span>
+            )}
+          </div>
+
+          <div className="flex gap-2">
+            <Button
+              onClick={resetForm}
+              variant="outline"
+              size="lg"
+              disabled={isSaving}
+            >
+              Réinitialiser
+            </Button>
+            <Button
+              onClick={save}
+              disabled={isSaving}
+              size="lg"
+            >
+              {isSaving ? 'Enregistrement...' : 'Enregistrer'}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
