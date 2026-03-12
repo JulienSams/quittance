@@ -2,16 +2,16 @@ import { ReceiptForm } from '@/components/ReceiptForm'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-violet-50/20">
-      {/* Hero Section - Modern & Colorful */}
-      <section className="relative bg-gradient-to-r from-blue-600 to-violet-600 border-b border-blue-700/20">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-teal-50/30 to-emerald-50/20">
+      {/* Hero Section - Modern Teal/Emerald */}
+      <section className="relative bg-gradient-to-r from-teal-600 to-emerald-600 border-b border-teal-700/20">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDEzNGgtMnYtMmgydjJ6bTAgNGgtMnYtMmgydjJ6bS00IDBoLTJ2LTJoMnYyem0tNCAwSDI2di0yaDJ2MnptLTQgMGgtMnYtMmgydjJ6bS00IDBoLTJ2LTJoMnYyem0tNCAwaDJ2MmgtMnYtMnptMCA0aDJ2MmgtMnYtMnptMCA0aDJ2MmgtMnYtMnptMCA0aDJ2MmgtMnYtMnptMC00aDJ2MmgtMnYtMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30"></div>
         <div className="relative max-w-5xl mx-auto px-6 sm:px-12 py-12 sm:py-16">
           <div className="max-w-3xl mx-auto text-center space-y-5">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-white drop-shadow-lg">
               Générateur de Quittances
             </h1>
-            <p className="text-lg sm:text-xl text-blue-50 font-light leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-teal-50 font-light leading-relaxed max-w-2xl mx-auto">
               Créez des quittances de loyer professionnelles et conformes à la législation française
             </p>
             <div className="pt-2">
