@@ -80,26 +80,23 @@ export function ReceiptForm() {
 
   return (
     <>
-      <Card className="p-8 mb-24 shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-          Informations de la quittance
-        </h2>
-        <p className="text-sm text-muted-foreground">
-          Complétez les informations ci-dessous pour générer vos quittances
-        </p>
-      </div>
+      <div className="bg-white border border-stone-200 mb-32">
+        <div className="p-8 sm:p-12 border-b border-stone-200">
+          <h2 className="text-3xl font-light tracking-tight text-stone-900 mb-3">
+            Informations
+          </h2>
+          <p className="text-stone-600 font-light">
+            Complétez les informations ci-dessous pour générer vos quittances
+          </p>
+        </div>
 
-      <Accordion type="single" collapsible defaultValue="proprietaire" className="space-y-3">
+      <Accordion type="single" collapsible defaultValue="proprietaire" className="divide-y divide-stone-200">
         {/* Section 1: Propriétaire */}
-        <AccordionItem value="proprietaire" className="border border-blue-100 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
-          <AccordionTrigger className="px-4 hover:bg-blue-50/50">
-            <div className="flex items-center gap-2">
-              <span className="text-blue-600">👤</span>
-              <span>Propriétaire</span>
-            </div>
+        <AccordionItem value="proprietaire" className="border-0">
+          <AccordionTrigger className="px-8 sm:px-12 py-6 hover:bg-stone-50 transition-colors">
+            <span className="text-lg font-light text-stone-900">Propriétaire</span>
           </AccordionTrigger>
-          <AccordionContent className="space-y-4 pt-4 bg-gradient-to-br from-blue-50/30 to-indigo-50/30 rounded-md px-4">
+          <AccordionContent className="px-8 sm:px-12 py-8 bg-stone-50/50">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="prop-nom">Nom *</Label>

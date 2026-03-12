@@ -14,25 +14,31 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-      {/* Header avec gradient */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-12 px-8 shadow-lg">
-        <div className="w-full max-w-2xl mx-auto">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center">
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+    <div className="min-h-screen bg-[#fafaf9]">
+      {/* Hero Section - Style Squarespace */}
+      <section className="relative bg-white border-b border-stone-200">
+        <div className="max-w-5xl mx-auto px-6 sm:px-12 py-16 sm:py-24">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-stone-900">
+              Générateur de Quittances
+            </h1>
+            <p className="text-lg sm:text-xl text-stone-600 font-light leading-relaxed max-w-2xl mx-auto">
+              Créez des quittances de loyer professionnelles et conformes à la législation française
+            </p>
+            <div className="pt-4">
+              <div className="inline-flex items-center gap-2 text-sm text-stone-500">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>Conforme aux locations meublées</span>
+              </div>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold">Générateur de Quittances</h1>
           </div>
-          <p className="text-blue-100 text-sm sm:text-base">
-            Créez vos quittances de loyer conformes à la législation française en quelques clics
-          </p>
         </div>
-      </div>
+      </section>
 
-      <div className="w-full max-w-2xl mx-auto px-4 py-8 space-y-6">
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-6 sm:px-12 py-16 sm:py-20">
         <ReceiptForm />
       </div>
     </div>
