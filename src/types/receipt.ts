@@ -33,6 +33,14 @@ export interface Loyer {
   charges: number // Charges amount (ALUR law requirement)
 }
 
+export interface MonthPeriod {
+  year: number
+  month: number // 0-11 (JavaScript month index)
+  startDate: Date // First day of occupation in this month
+  endDate: Date // Last day of occupation in this month
+  isPartial: boolean // True if not occupying full month
+}
+
 export interface ReceiptData {
   proprietaire: Proprietaire
   locataire: Locataire
