@@ -506,8 +506,8 @@ export function ReceiptForm() {
       </div>
       </div>
 
-      {/* Sticky save button at bottom */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-teal-100 p-6 z-50 shadow-lg">
+      {/* Save button at bottom */}
+      <div className="mt-8 bg-white/95 backdrop-blur border-t border-teal-100 p-6 shadow-lg rounded-lg">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             {saveSuccess && (
