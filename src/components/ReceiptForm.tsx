@@ -94,17 +94,17 @@ export function ReceiptForm() {
   return (
     <>
       <div className="bg-white border border-stone-200 rounded-lg shadow-sm mb-32 overflow-hidden">
-        <div className="bg-gradient-to-r from-teal-50 to-emerald-50 p-6 sm:p-8 border-b border-teal-100">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div className="flex-1">
-              <h2 className="text-2xl sm:text-3xl font-light tracking-tight bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent mb-2">
-                Informations
+        <div className="bg-gradient-to-r from-teal-50 to-emerald-50 px-6 sm:px-10 py-8 sm:py-10 border-b border-teal-100">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+            <div className="flex-1 space-y-3">
+              <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
+                Vos informations
               </h2>
-              <p className="text-stone-600 font-light text-sm sm:text-base">
-                Complétez les informations ci-dessous pour générer vos quittances
+              <p className="text-stone-500 text-base sm:text-lg leading-relaxed">
+                Renseignez les détails pour générer vos quittances
               </p>
             </div>
-            <div className="shrink-0">
+            <div className="shrink-0 sm:self-start sm:pt-1">
               <ConfigManager
                 onSave={(name) => saveConfigAs(name)}
                 onLoad={(name) => loadConfigByName(name)}
