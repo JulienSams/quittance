@@ -55,7 +55,8 @@ progress:
 
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
-| 1 | ajouter système de sauvegarde de configurations multiples avec nom personnalisé | 2026-03-12 | 9b0797c | [1-ajouter-syst-me-de-sauvegarde-de-configu](./ quick/1-ajouter-syst-me-de-sauvegarde-de-configu/) |
+| 1 | ajouter système de sauvegarde de configurations multiples avec nom personnalisé | 2026-03-12 | 9b0797c | [1-ajouter-syst-me-de-sauvegarde-de-configu](./quick/1-ajouter-syst-me-de-sauvegarde-de-configu/) |
+| 2 | ajouter couleurs trendy au design et optimiser le header | 2026-03-12 | 2b179ee | [2-ajouter-couleurs-trendy-au-design-et-opt](./quick/2-ajouter-couleurs-trendy-au-design-et-opt/) |
 
 ---
 
