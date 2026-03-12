@@ -9,16 +9,5 @@
     "plan_check": true,
     "verifier": true,
     "nyquist_validation": true
-  },
-  "model_overrides": {
-    "gsd-project-researcher": "inherit",
-    "gsd-research-synthesizer": "inherit",
-    "gsd-roadmapper": "inherit",
-    "gsd-planner": "inherit",
-    "gsd-executor": "inherit",
-    "gsd-phase-researcher": "inherit",
-    "gsd-verifier": "inherit",
-    "gsd-plan-checker": "inherit",
-    "gsd-nyquist-auditor": "inherit"
   }
 }
