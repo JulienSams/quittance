@@ -29,7 +29,6 @@ const initialFormData: ReceiptData = {
 export function useReceiptForm() {
   const [formData, setFormData] = useState<ReceiptData>(initialFormData)
   const [errors, setErrors] = useState<ValidationErrors>({})
-  const [touchedFields, setTouchedFields] = useState<Set<string>>(new Set())
   const [isSaving, setIsSaving] = useState(false)
   const [saveSuccess, setSaveSuccess] = useState(false)
 
@@ -42,14 +41,14 @@ export function useReceiptForm() {
   }, [])
 
   const updateField = (
-    section: keyof ReceiptData,
+    section: keyof ValidationErrors,
     field: string,
     value: string | number
   ) => {
     setFormData((prev) => ({
       ...prev,
       [section]: {
-        ...prev[section],
+        ...(prev[section] as Record<string, any>),
         [field]: value,
       },
     }))
@@ -59,7 +58,7 @@ export function useReceiptForm() {
       setErrors((prev) => {
         const newErrors = { ...prev }
         if (newErrors[section]) {
-          const { [field]: _, ...rest } = newErrors[section]!
+          const { [field]: _, ...rest} = newErrors[section]!
           newErrors[section] = rest
           if (Object.keys(rest).length === 0) {
             delete newErrors[section]
@@ -70,12 +69,9 @@ export function useReceiptForm() {
     }
   }
 
-  const handleBlur = (section: keyof ReceiptData, field: string) => {
-    const fieldKey = `${section}.${field}`
-    setTouchedFields((prev) => new Set(prev).add(fieldKey))
-
-    const value = (formData[section] as any)[field]
-    const error = validateField(section, field, value)
+  const handleBlur = (section: keyof ValidationErrors, field: string) => {
+    const value = (formData[section as keyof ReceiptData] as any)[field]
+    const error = validateField(section as keyof ReceiptData, field, value)
 
     if (error) {
       setErrors((prev) => ({
@@ -124,7 +120,6 @@ export function useReceiptForm() {
       clearReceiptData()
       setFormData(initialFormData)
       setErrors({})
-      setTouchedFields(new Set())
     }
   }
 

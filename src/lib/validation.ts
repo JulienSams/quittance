@@ -44,8 +44,8 @@ export function validateField(
 export function validateForm(data: ReceiptData): ValidationErrors {
   const errors: ValidationErrors = {}
 
-  // Validate each section
-  const sections: Array<keyof ReceiptData> = ['proprietaire', 'locataire', 'bien', 'loyer']
+  // Validate each section (only the ones that are part of ValidationErrors)
+  const sections = ['proprietaire', 'locataire', 'bien', 'loyer'] as const
 
   sections.forEach((section) => {
     const sectionData = data[section] as Record<string, any>
