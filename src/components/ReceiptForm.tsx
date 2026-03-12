@@ -17,7 +17,7 @@ import {
 import { useReceiptForm } from '@/hooks/useReceiptForm'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
-import { CalendarIcon, Check } from 'lucide-react'
+import { CalendarIcon, Check, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { generateReceiptBatch, generateZipFilename } from '@/lib/batch-generator'
 import { validateBatchGeneration } from '@/lib/validation'
@@ -394,13 +394,18 @@ export function ReceiptForm() {
           className="w-full"
           size="lg"
         >
-          {isGenerating
-            ? `Génération... ${progress.current}/${progress.total}`
-            : 'Générer les quittances'}
+          {isGenerating ? 'Génération en cours...' : 'Générer les quittances'}
         </Button>
 
+        {isGenerating && (
+          <p className="text-sm text-muted-foreground flex items-center gap-2">
+            <Loader2 className="h-4 w-4 animate-spin" />
+            Génération en cours... {progress.current}/{progress.total}
+          </p>
+        )}
+
         {generationError && (
-          <p className="text-sm text-destructive">
+          <p className="text-sm text-destructive mt-2">
             {generationError}
           </p>
         )}
