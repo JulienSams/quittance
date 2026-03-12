@@ -9,5 +9,16 @@
     "plan_check": true,
     "verifier": true,
     "nyquist_validation": true
+  },
+  "model_overrides": {
+    "gsd-project-researcher": "claude-sonnet-4-6",
+    "gsd-research-synthesizer": "claude-sonnet-4-6",
+    "gsd-roadmapper": "claude-sonnet-4-6",
+    "gsd-planner": "claude-opus-4-6",
+    "gsd-executor": "claude-sonnet-4-6",
+    "gsd-phase-researcher": "claude-sonnet-4-6",
+    "gsd-verifier": "claude-sonnet-4-6",
+    "gsd-plan-checker": "claude-sonnet-4-6",
+    "gsd-nyquist-auditor": "claude-sonnet-4-6"
   }
 }
