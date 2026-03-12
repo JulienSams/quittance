@@ -11,14 +11,14 @@
     "nyquist_validation": true
   },
   "model_overrides": {
-    "gsd-project-researcher": "claude-sonnet-4-6",
-    "gsd-research-synthesizer": "claude-sonnet-4-6",
-    "gsd-roadmapper": "claude-sonnet-4-6",
-    "gsd-planner": "claude-opus-4-6",
-    "gsd-executor": "claude-sonnet-4-6",
-    "gsd-phase-researcher": "claude-sonnet-4-6",
-    "gsd-verifier": "claude-sonnet-4-6",
-    "gsd-plan-checker": "claude-sonnet-4-6",
-    "gsd-nyquist-auditor": "claude-sonnet-4-6"
+    "gsd-project-researcher": "inherit",
+    "gsd-research-synthesizer": "inherit",
+    "gsd-roadmapper": "inherit",
+    "gsd-planner": "inherit",
+    "gsd-executor": "inherit",
+    "gsd-phase-researcher": "inherit",
+    "gsd-verifier": "inherit",
+    "gsd-plan-checker": "inherit",
+    "gsd-nyquist-auditor": "inherit"
   }
 }
