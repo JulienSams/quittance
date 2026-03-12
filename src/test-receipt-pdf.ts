@@ -4,7 +4,7 @@
  * Run this in the browser console or add as a button in the app
  */
 
-import { generateReceiptPDF } from './lib/receipt-generator'
+import { generateReceiptPDF } from './lib/receipt-generator.tsx'
 import type { ReceiptData, MonthlyReceipt } from './types/receipt'
 
 // Test data with French characters
