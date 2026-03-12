@@ -78,15 +78,15 @@ export function HistoryViewer() {
       {history.map((item) => (
         <div
           key={item.id}
-          className="bg-white border border-stone-200 rounded-lg p-4 hover:border-teal-200 transition-colors"
+          className="bg-white border border-stone-200 rounded-lg p-4 sm:p-5 hover:border-teal-200 transition-colors"
         >
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1 space-y-2">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div className="flex-1 space-y-3">
               {/* Header */}
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 text-sm text-stone-500">
-                  <Calendar className="w-4 h-4" />
-                  {format(new Date(item.generatedAt), 'd MMMM yyyy à HH:mm', { locale: fr })}
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-stone-500">
+                  <Calendar className="w-4 h-4 shrink-0" />
+                  {format(new Date(item.generatedAt), 'd MMM yyyy à HH:mm', { locale: fr })}
                 </div>
                 <div className="px-2 py-0.5 bg-teal-50 text-teal-700 text-xs font-medium rounded-full">
                   {item.nombreQuittances} quittance{item.nombreQuittances > 1 ? 's' : ''}
@@ -94,7 +94,7 @@ export function HistoryViewer() {
               </div>
 
               {/* Details */}
-              <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
                 <div>
                   <span className="text-stone-500 font-light">Propriétaire:</span>{' '}
                   <span className="text-stone-900">
@@ -107,7 +107,7 @@ export function HistoryViewer() {
                     {item.locataire.prenom} {item.locataire.nom}
                   </span>
                 </div>
-                <div className="col-span-2">
+                <div className="sm:col-span-2">
                   <span className="text-stone-500 font-light">Période:</span>{' '}
                   <span className="text-stone-900">
                     {format(new Date(item.periode.debut), 'd MMM yyyy', { locale: fr })}
@@ -127,7 +127,7 @@ export function HistoryViewer() {
                 className="gap-2"
               >
                 <Download className="w-4 h-4" />
-                <span className="hidden sm:inline">Télécharger</span>
+                <span>Télécharger</span>
               </Button>
               <Button
                 onClick={() => handleDelete(item.id, item.zipFilename)}

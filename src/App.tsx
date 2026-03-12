@@ -28,7 +28,7 @@ function App() {
       </section>
 
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-6 sm:px-12 py-16 sm:py-20 space-y-16">
+      <div className="max-w-4xl mx-auto px-6 sm:px-12 py-16 sm:py-20 pb-32 space-y-16">
         <ReceiptForm />
 
         {/* History Section */}
