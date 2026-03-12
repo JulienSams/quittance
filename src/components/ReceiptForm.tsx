@@ -312,6 +312,20 @@ export function ReceiptForm() {
                 </Popover>
               </div>
             </div>
+
+            {formData.monthlyReceipts && formData.monthlyReceipts.length > 0 && (
+              <div className="pt-4 text-sm text-muted-foreground">
+                ✓ {formData.monthlyReceipts.length} quittance{formData.monthlyReceipts.length > 1 ? 's' : ''} {formData.monthlyReceipts.length > 1 ? 'seront générées' : 'sera générée'}
+                {(() => {
+                  const partial = formData.monthlyReceipts.filter(r => r.period.isPartial).length
+                  const full = formData.monthlyReceipts.length - partial
+                  if (partial > 0 && full > 0) {
+                    return ` (${full} mois complet${full > 1 ? 's' : ''} + ${partial} mois partiel${partial > 1 ? 's' : ''})`
+                  }
+                  return ''
+                })()}
+              </div>
+            )}
           </AccordionContent>
         </AccordionItem>
       </Accordion>

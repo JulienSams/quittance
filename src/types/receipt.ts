@@ -41,6 +41,14 @@ export interface MonthPeriod {
   isPartial: boolean // True if not occupying full month
 }
 
+export interface MonthlyReceipt {
+  period: MonthPeriod
+  loyerHorsCharges: number
+  charges: number
+  total: number
+  receiptNumber?: string // For PDF generation in Phase 4
+}
+
 export interface ReceiptData {
   proprietaire: Proprietaire
   locataire: Locataire
@@ -49,4 +57,5 @@ export interface ReceiptData {
   // Date range for batch generation (Phase 3)
   dateDebut?: Date
   dateFin?: Date
+  monthlyReceipts?: MonthlyReceipt[] // Generated receipts
 }

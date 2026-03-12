@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
-import type { ReceiptData } from '@/types/receipt'
+import type { ReceiptData, MonthlyReceipt } from '@/types/receipt'
 import { validateField, validateForm, validateDateRange, type ValidationErrors } from '@/lib/validation'
 import { saveReceiptData, loadReceiptData, clearReceiptData } from '@/lib/storage'
+import { generateMonthsInRange } from '@/lib/date-utils'
+import { calculateMonthProrata } from '@/lib/prorata-calculator'
 
 const initialFormData: ReceiptData = {
   proprietaire: {
@@ -72,6 +74,19 @@ export function useReceiptForm() {
     }
   }
 
+  const generateReceipts = (dateDebut: Date, dateFin: Date, fullLoyer: number, fullCharges: number): MonthlyReceipt[] => {
+    const months = generateMonthsInRange(dateDebut, dateFin)
+    return months.map((period) => {
+      const prorata = calculateMonthProrata(period, fullLoyer, fullCharges)
+      return {
+        period,
+        loyerHorsCharges: prorata.loyerHorsCharges,
+        charges: prorata.charges,
+        total: prorata.total,
+      }
+    })
+  }
+
   const updateDateField = (field: 'dateDebut' | 'dateFin', date: Date | undefined) => {
     setFormData((prev) => ({
       ...prev,
@@ -86,15 +101,29 @@ export function useReceiptForm() {
       })
     }
 
-    // Validate date range immediately after updating
-    // Wait for next tick to ensure formData is updated
+    // Validate and generate receipts after updating
     setTimeout(() => {
       const updatedData = field === 'dateDebut'
         ? { ...formData, dateDebut: date }
         : { ...formData, dateFin: date }
+
       const error = validateDateRange(updatedData.dateDebut, updatedData.dateFin)
       if (error) {
         setErrors((prev) => ({ ...prev, dateRange: error }))
+      }
+
+      // Generate receipts if both dates are set
+      if (updatedData.dateDebut && updatedData.dateFin && !error) {
+        const receipts = generateReceipts(
+          updatedData.dateDebut,
+          updatedData.dateFin,
+          formData.loyer.loyerHorsCharges,
+          formData.loyer.charges
+        )
+        setFormData((prev) => ({ ...prev, monthlyReceipts: receipts }))
+      } else {
+        // Clear receipts if dates are invalid
+        setFormData((prev) => ({ ...prev, monthlyReceipts: undefined }))
       }
     }, 0)
   }
