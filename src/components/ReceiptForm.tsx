@@ -95,8 +95,8 @@ export function ReceiptForm() {
     <>
       <div className="bg-white border border-stone-200 mb-32">
         <div className="p-8 sm:p-12 border-b border-stone-200">
-          <div className="flex items-start justify-between gap-4 mb-6">
-            <div>
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+            <div className="flex-1">
               <h2 className="text-3xl font-light tracking-tight text-stone-900 mb-3">
                 Informations
               </h2>
@@ -104,11 +104,13 @@ export function ReceiptForm() {
                 Complétez les informations ci-dessous pour générer vos quittances
               </p>
             </div>
-            <ConfigManager
-              onSave={(name) => saveConfigAs(name)}
-              onLoad={(name) => loadConfigByName(name)}
-              onDelete={(name) => deleteConfigByName(name)}
-            />
+            <div className="shrink-0">
+              <ConfigManager
+                onSave={(name) => saveConfigAs(name)}
+                onLoad={(name) => loadConfigByName(name)}
+                onDelete={(name) => deleteConfigByName(name)}
+              />
+            </div>
           </div>
         </div>
 

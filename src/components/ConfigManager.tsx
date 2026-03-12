@@ -70,13 +70,14 @@ export function ConfigManager({ onSave, onLoad, onDelete }: ConfigManagerProps) 
   }
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2 sm:gap-3">
       {/* Save Dialog */}
       <Dialog open={saveDialogOpen} onOpenChange={setSaveDialogOpen}>
         <DialogTrigger asChild>
           <Button variant="outline" size="sm" className="gap-2">
-            <Save className="h-4 w-4" />
-            Sauvegarder la configuration
+            <Save className="h-4 w-4 shrink-0" />
+            <span className="hidden sm:inline">Sauvegarder la configuration</span>
+            <span className="sm:hidden">Sauvegarder</span>
           </Button>
         </DialogTrigger>
         <DialogContent>
@@ -112,8 +113,9 @@ export function ConfigManager({ onSave, onLoad, onDelete }: ConfigManagerProps) 
       <Dialog open={loadDialogOpen} onOpenChange={setLoadDialogOpen}>
         <DialogTrigger asChild>
           <Button variant="outline" size="sm" className="gap-2">
-            <FolderOpen className="h-4 w-4" />
-            Charger une configuration
+            <FolderOpen className="h-4 w-4 shrink-0" />
+            <span className="hidden sm:inline">Charger une configuration</span>
+            <span className="sm:hidden">Charger</span>
           </Button>
         </DialogTrigger>
         <DialogContent>
