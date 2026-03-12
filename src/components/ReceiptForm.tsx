@@ -92,10 +92,10 @@ export function ReceiptForm() {
                   value={formData.proprietaire.nom}
                   onChange={(e) => updateField('proprietaire', 'nom', e.target.value)}
                   onBlur={() => handleBlur('proprietaire', 'nom')}
-                  className={errors.proprietaire?.nom ? 'border-red-600' : ''}
+                  className={errors.proprietaire?.nom ? 'border-destructive' : ''}
                 />
                 {errors.proprietaire?.nom && (
-                  <p className="text-sm text-red-600 mt-1">{errors.proprietaire.nom}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.proprietaire.nom}</p>
                 )}
               </div>
               <div>
@@ -105,10 +105,10 @@ export function ReceiptForm() {
                   value={formData.proprietaire.prenom}
                   onChange={(e) => updateField('proprietaire', 'prenom', e.target.value)}
                   onBlur={() => handleBlur('proprietaire', 'prenom')}
-                  className={errors.proprietaire?.prenom ? 'border-red-600' : ''}
+                  className={errors.proprietaire?.prenom ? 'border-destructive' : ''}
                 />
                 {errors.proprietaire?.prenom && (
-                  <p className="text-sm text-red-600 mt-1">{errors.proprietaire.prenom}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.proprietaire.prenom}</p>
                 )}
               </div>
             </div>
@@ -120,10 +120,10 @@ export function ReceiptForm() {
                 value={formData.proprietaire.adresse}
                 onChange={(e) => updateField('proprietaire', 'adresse', e.target.value)}
                 onBlur={() => handleBlur('proprietaire', 'adresse')}
-                className={errors.proprietaire?.adresse ? 'border-red-600' : ''}
+                className={errors.proprietaire?.adresse ? 'border-destructive' : ''}
               />
               {errors.proprietaire?.adresse && (
-                <p className="text-sm text-red-600 mt-1">{errors.proprietaire.adresse}</p>
+                <p className="text-sm text-destructive mt-1">{errors.proprietaire.adresse}</p>
               )}
             </div>
 
@@ -136,10 +136,10 @@ export function ReceiptForm() {
                   onChange={(e) => updateField('proprietaire', 'codePostal', e.target.value)}
                   onBlur={() => handleBlur('proprietaire', 'codePostal')}
                   maxLength={5}
-                  className={errors.proprietaire?.codePostal ? 'border-red-600' : ''}
+                  className={errors.proprietaire?.codePostal ? 'border-destructive' : ''}
                 />
                 {errors.proprietaire?.codePostal && (
-                  <p className="text-sm text-red-600 mt-1">{errors.proprietaire.codePostal}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.proprietaire.codePostal}</p>
                 )}
               </div>
               <div className="md:col-span-2">
@@ -149,10 +149,10 @@ export function ReceiptForm() {
                   value={formData.proprietaire.ville}
                   onChange={(e) => updateField('proprietaire', 'ville', e.target.value)}
                   onBlur={() => handleBlur('proprietaire', 'ville')}
-                  className={errors.proprietaire?.ville ? 'border-red-600' : ''}
+                  className={errors.proprietaire?.ville ? 'border-destructive' : ''}
                 />
                 {errors.proprietaire?.ville && (
-                  <p className="text-sm text-red-600 mt-1">{errors.proprietaire.ville}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.proprietaire.ville}</p>
                 )}
               </div>
             </div>
@@ -171,10 +171,10 @@ export function ReceiptForm() {
                   value={formData.locataire.nom}
                   onChange={(e) => updateField('locataire', 'nom', e.target.value)}
                   onBlur={() => handleBlur('locataire', 'nom')}
-                  className={errors.locataire?.nom ? 'border-red-600' : ''}
+                  className={errors.locataire?.nom ? 'border-destructive' : ''}
                 />
                 {errors.locataire?.nom && (
-                  <p className="text-sm text-red-600 mt-1">{errors.locataire.nom}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.locataire.nom}</p>
                 )}
               </div>
               <div>
@@ -184,10 +184,10 @@ export function ReceiptForm() {
                   value={formData.locataire.prenom}
                   onChange={(e) => updateField('locataire', 'prenom', e.target.value)}
                   onBlur={() => handleBlur('locataire', 'prenom')}
-                  className={errors.locataire?.prenom ? 'border-red-600' : ''}
+                  className={errors.locataire?.prenom ? 'border-destructive' : ''}
                 />
                 {errors.locataire?.prenom && (
-                  <p className="text-sm text-red-600 mt-1">{errors.locataire.prenom}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.locataire.prenom}</p>
                 )}
               </div>
             </div>
@@ -205,10 +205,10 @@ export function ReceiptForm() {
                 value={formData.bien.adresse}
                 onChange={(e) => updateField('bien', 'adresse', e.target.value)}
                 onBlur={() => handleBlur('bien', 'adresse')}
-                className={errors.bien?.adresse ? 'border-red-600' : ''}
+                className={errors.bien?.adresse ? 'border-destructive' : ''}
               />
               {errors.bien?.adresse && (
-                <p className="text-sm text-red-600 mt-1">{errors.bien.adresse}</p>
+                <p className="text-sm text-destructive mt-1">{errors.bien.adresse}</p>
               )}
             </div>
 
@@ -221,10 +221,10 @@ export function ReceiptForm() {
                   onChange={(e) => updateField('bien', 'codePostal', e.target.value)}
                   onBlur={() => handleBlur('bien', 'codePostal')}
                   maxLength={5}
-                  className={errors.bien?.codePostal ? 'border-red-600' : ''}
+                  className={errors.bien?.codePostal ? 'border-destructive' : ''}
                 />
                 {errors.bien?.codePostal && (
-                  <p className="text-sm text-red-600 mt-1">{errors.bien.codePostal}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.bien.codePostal}</p>
                 )}
               </div>
               <div className="md:col-span-2">
@@ -234,10 +234,10 @@ export function ReceiptForm() {
                   value={formData.bien.ville}
                   onChange={(e) => updateField('bien', 'ville', e.target.value)}
                   onBlur={() => handleBlur('bien', 'ville')}
-                  className={errors.bien?.ville ? 'border-red-600' : ''}
+                  className={errors.bien?.ville ? 'border-destructive' : ''}
                 />
                 {errors.bien?.ville && (
-                  <p className="text-sm text-red-600 mt-1">{errors.bien.ville}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.bien.ville}</p>
                 )}
               </div>
             </div>
@@ -258,10 +258,10 @@ export function ReceiptForm() {
                   value={formData.loyer.loyerHorsCharges}
                   onChange={(e) => updateField('loyer', 'loyerHorsCharges', parseFloat(e.target.value) || 0)}
                   onBlur={() => handleBlur('loyer', 'loyerHorsCharges')}
-                  className={errors.loyer?.loyerHorsCharges ? 'border-red-600' : ''}
+                  className={errors.loyer?.loyerHorsCharges ? 'border-destructive' : ''}
                 />
                 {errors.loyer?.loyerHorsCharges && (
-                  <p className="text-sm text-red-600 mt-1">{errors.loyer.loyerHorsCharges}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.loyer.loyerHorsCharges}</p>
                 )}
               </div>
               <div>
@@ -273,10 +273,10 @@ export function ReceiptForm() {
                   value={formData.loyer.charges}
                   onChange={(e) => updateField('loyer', 'charges', parseFloat(e.target.value) || 0)}
                   onBlur={() => handleBlur('loyer', 'charges')}
-                  className={errors.loyer?.charges ? 'border-red-600' : ''}
+                  className={errors.loyer?.charges ? 'border-destructive' : ''}
                 />
                 {errors.loyer?.charges && (
-                  <p className="text-sm text-red-600 mt-1">{errors.loyer.charges}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.loyer.charges}</p>
                 )}
               </div>
             </div>
@@ -302,7 +302,7 @@ export function ReceiptForm() {
                       className={cn(
                         "w-full justify-start text-left font-normal",
                         !formData.dateDebut && "text-muted-foreground",
-                        errors.dateRange && "border-red-600"
+                        errors.dateRange && "border-destructive"
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
@@ -324,7 +324,7 @@ export function ReceiptForm() {
                   </PopoverContent>
                 </Popover>
                 {errors.dateRange && (
-                  <p className="text-sm text-red-600 mt-1">{errors.dateRange}</p>
+                  <p className="text-sm text-destructive mt-1">{errors.dateRange}</p>
                 )}
               </div>
 
@@ -338,7 +338,7 @@ export function ReceiptForm() {
                       className={cn(
                         "w-full justify-start text-left font-normal",
                         !formData.dateFin && "text-muted-foreground",
-                        errors.dateRange && "border-red-600"
+                        errors.dateRange && "border-destructive"
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
@@ -394,7 +394,7 @@ export function ReceiptForm() {
         </Button>
 
         {generationError && (
-          <p className="text-sm text-red-600">
+          <p className="text-sm text-destructive">
             {generationError}
           </p>
         )}
