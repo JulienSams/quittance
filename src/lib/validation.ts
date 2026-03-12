@@ -91,3 +91,63 @@ export function validateDateRange(
 
   return null
 }
+
+/**
+ * Validate that receipt data is complete and ready for batch generation
+ *
+ * @param receiptData - Complete receipt data to validate
+ * @returns { valid: boolean, errors: string[] }
+ */
+export function validateBatchGeneration(receiptData: ReceiptData): {
+  valid: boolean
+  errors: string[]
+} {
+  const errors: string[] = []
+
+  // Validate proprietaire
+  const { proprietaire } = receiptData
+  if (
+    !proprietaire.nom?.trim() ||
+    !proprietaire.prenom?.trim() ||
+    !proprietaire.adresse?.trim() ||
+    !proprietaire.codePostal?.trim() ||
+    !proprietaire.ville?.trim()
+  ) {
+    errors.push('Veuillez remplir toutes les informations du propriétaire')
+  }
+
+  // Validate locataire
+  const { locataire } = receiptData
+  if (!locataire.nom?.trim() || !locataire.prenom?.trim()) {
+    errors.push('Veuillez remplir toutes les informations du locataire')
+  }
+
+  // Validate bien
+  const { bien } = receiptData
+  if (!bien.adresse?.trim() || !bien.codePostal?.trim() || !bien.ville?.trim()) {
+    errors.push('Veuillez remplir toutes les informations du bien')
+  }
+
+  // Validate loyer amounts
+  const { loyer } = receiptData
+  if (loyer.loyerHorsCharges <= 0 || loyer.charges < 0) {
+    errors.push('Les montants de loyer doivent être supérieurs à zéro')
+  }
+
+  // Validate dates
+  if (!receiptData.dateDebut || !receiptData.dateFin) {
+    errors.push('Veuillez sélectionner une période de génération')
+  } else if (receiptData.dateDebut > receiptData.dateFin) {
+    errors.push('La date de fin doit être postérieure à la date de début')
+  }
+
+  // Validate monthlyReceipts exists
+  if (!receiptData.monthlyReceipts || receiptData.monthlyReceipts.length === 0) {
+    errors.push('Aucune quittance à générer pour la période sélectionnée')
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors,
+  }
+}
