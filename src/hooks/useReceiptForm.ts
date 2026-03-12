@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import type { ReceiptData, MonthlyReceipt } from '@/types/receipt'
+import type { ConfigListItem } from '@/types/config'
 import { validateField, validateForm, validateDateRange, type ValidationErrors } from '@/lib/validation'
 import { saveReceiptData, loadReceiptData, clearReceiptData } from '@/lib/storage'
+import { saveConfig as saveConfigStorage, loadConfig as loadConfigStorage, deleteConfig as deleteConfigStorage, listConfigs } from '@/lib/config-storage'
 import { generateMonthsInRange } from '@/lib/date-utils'
 import { calculateMonthProrata } from '@/lib/prorata-calculator'
 
@@ -36,6 +38,18 @@ export function useReceiptForm() {
 
   // Auto-load on mount
   useEffect(() => {
+    // Check if we should load a specific config (from session storage)
+    const configToLoad = sessionStorage.getItem('quittance-load-config')
+    if (configToLoad) {
+      sessionStorage.removeItem('quittance-load-config')
+      const configData = loadConfigStorage(configToLoad)
+      if (configData) {
+        setFormData(configData)
+        return
+      }
+    }
+
+    // Otherwise load default saved data
     const savedData = loadReceiptData()
     if (savedData) {
       setFormData(savedData)
@@ -193,6 +207,27 @@ export function useReceiptForm() {
     }
   }
 
+  // Configuration management
+  const saveConfigAs = (name: string): void => {
+    saveConfigStorage(name, formData)
+  }
+
+  const loadConfigByName = (name: string): void => {
+    const configData = loadConfigStorage(name)
+    if (configData) {
+      setFormData(configData)
+      setErrors({})
+    }
+  }
+
+  const getAvailableConfigs = (): ConfigListItem[] => {
+    return listConfigs()
+  }
+
+  const deleteConfigByName = (name: string): void => {
+    deleteConfigStorage(name)
+  }
+
   return {
     formData,
     errors,
@@ -204,5 +239,10 @@ export function useReceiptForm() {
     validateAll,
     save,
     resetForm,
+    // Config management
+    saveConfigAs,
+    loadConfigByName,
+    getAvailableConfigs,
+    deleteConfigByName,
   }
 }

@@ -22,10 +22,22 @@ import { generateReceiptBatch, generateZipFilename } from '@/lib/batch-generator
 import { validateBatchGeneration } from '@/lib/validation'
 import { useState } from 'react'
 import { ConfigManager } from '@/components/ConfigManager'
-import { saveConfig, loadConfig, deleteConfig } from '@/lib/config-storage'
 
 export function ReceiptForm() {
-  const { formData, errors, isSaving, saveSuccess, updateField, updateDateField, handleBlur, save, resetForm } = useReceiptForm()
+  const {
+    formData,
+    errors,
+    isSaving,
+    saveSuccess,
+    updateField,
+    updateDateField,
+    handleBlur,
+    save,
+    resetForm,
+    saveConfigAs,
+    loadConfigByName,
+    deleteConfigByName,
+  } = useReceiptForm()
 
   // Batch generation state
   const [isGenerating, setIsGenerating] = useState(false)
@@ -93,17 +105,9 @@ export function ReceiptForm() {
               </p>
             </div>
             <ConfigManager
-              onSave={(name) => saveConfig(name, formData)}
-              onLoad={(name) => {
-                const data = loadConfig(name)
-                if (data) {
-                  // Reload form with loaded data
-                  window.location.reload()
-                  // Store the config name to load after reload
-                  sessionStorage.setItem('quittance-load-config', name)
-                }
-              }}
-              onDelete={(name) => deleteConfig(name)}
+              onSave={(name) => saveConfigAs(name)}
+              onLoad={(name) => loadConfigByName(name)}
+              onDelete={(name) => deleteConfigByName(name)}
             />
           </div>
         </div>
