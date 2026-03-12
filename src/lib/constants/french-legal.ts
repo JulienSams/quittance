@@ -54,6 +54,22 @@ export const LEGAL_MENTIONS = {
 }
 
 /**
+ * Receipt number prefix for display
+ */
+export const RECEIPT_NUMBER_PREFIX = 'N° '
+
+/**
+ * Format month and year for French locale
+ *
+ * @param date - Date to format
+ * @returns Formatted string like "Février 2026"
+ */
+export function formatMonthYear(date: Date): string {
+  const formatted = date.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+  return formatted.charAt(0).toUpperCase() + formatted.slice(1)
+}
+
+/**
  * Helper to get total rent (rent + charges)
  */
 export function calculateTotalRent(loyerHorsCharges: number, charges: number): number {
