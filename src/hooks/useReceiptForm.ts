@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import type { ReceiptData, MonthlyReceipt } from '@/types/receipt'
 import type { ConfigListItem } from '@/types/config'
 import { validateField, validateForm, validateDateRange, type ValidationErrors } from '@/lib/validation'
-import { saveReceiptData, loadReceiptData, clearReceiptData } from '@/lib/storage'
+import { saveReceiptData, loadReceiptData } from '@/lib/storage'
 import { saveConfig as saveConfigStorage, loadConfig as loadConfigStorage, deleteConfig as deleteConfigStorage, listConfigs } from '@/lib/config-storage'
 import { generateMonthsInRange } from '@/lib/date-utils'
 import { calculateMonthProrata } from '@/lib/prorata-calculator'
@@ -33,8 +33,6 @@ const initialFormData: ReceiptData = {
 export function useReceiptForm() {
   const [formData, setFormData] = useState<ReceiptData>(initialFormData)
   const [errors, setErrors] = useState<ValidationErrors>({})
-  const [isSaving, setIsSaving] = useState(false)
-  const [saveSuccess, setSaveSuccess] = useState(false)
 
   // Auto-load on mount
   useEffect(() => {
@@ -55,6 +53,24 @@ export function useReceiptForm() {
       setFormData(savedData)
     }
   }, [])
+
+  // Auto-save on formData change (with debounce)
+  useEffect(() => {
+    // Skip auto-save if form is empty (initial state)
+    const isEmpty =
+      !formData.proprietaire.nom &&
+      !formData.proprietaire.prenom &&
+      !formData.locataire.nom &&
+      !formData.locataire.prenom
+
+    if (isEmpty) return
+
+    const timeoutId = setTimeout(() => {
+      saveReceiptData(formData)
+    }, 500) // 500ms debounce
+
+    return () => clearTimeout(timeoutId)
+  }, [formData])
 
   const updateField = (
     section: keyof Omit<ValidationErrors, 'dateRange'>,
@@ -174,39 +190,6 @@ export function useReceiptForm() {
     return Object.keys(allErrors).length === 0
   }
 
-  const save = async (): Promise<boolean> => {
-    // Validate before saving
-    if (!validateAll()) {
-      return false
-    }
-
-    setIsSaving(true)
-    setSaveSuccess(false)
-
-    try {
-      saveReceiptData(formData)
-      setSaveSuccess(true)
-
-      // Clear success message after 3 seconds
-      setTimeout(() => setSaveSuccess(false), 3000)
-
-      return true
-    } catch (error) {
-      console.error('Save failed:', error)
-      return false
-    } finally {
-      setIsSaving(false)
-    }
-  }
-
-  const resetForm = () => {
-    if (window.confirm('Voulez-vous vraiment effacer toutes les données ?')) {
-      clearReceiptData()
-      setFormData(initialFormData)
-      setErrors({})
-    }
-  }
-
   // Configuration management
   const saveConfigAs = (name: string): void => {
     saveConfigStorage(name, formData)
@@ -217,6 +200,10 @@ export function useReceiptForm() {
     if (configData) {
       setFormData(configData)
       setErrors({})
+      // Auto-save after loading a config
+      setTimeout(() => {
+        saveReceiptData(configData)
+      }, 0)
     }
   }
 
@@ -231,14 +218,10 @@ export function useReceiptForm() {
   return {
     formData,
     errors,
-    isSaving,
-    saveSuccess,
     updateField,
     updateDateField,
     handleBlur,
     validateAll,
-    save,
-    resetForm,
     // Config management
     saveConfigAs,
     loadConfigByName,

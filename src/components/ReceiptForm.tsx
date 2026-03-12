@@ -7,16 +7,9 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
-import { Calendar } from '@/components/ui/calendar'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover'
+import { DatePicker } from '@/components/ui/date-picker'
 import { useReceiptForm } from '@/hooks/useReceiptForm'
-import { format } from 'date-fns'
-import { fr } from 'date-fns/locale'
-import { CalendarIcon, Check, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { generateReceiptBatch, generateZipFilename } from '@/lib/batch-generator'
 import { validateBatchGeneration } from '@/lib/validation'
@@ -29,13 +22,9 @@ export function ReceiptForm() {
   const {
     formData,
     errors,
-    isSaving,
-    saveSuccess,
     updateField,
     updateDateField,
     handleBlur,
-    save,
-    resetForm,
     saveConfigAs,
     loadConfigByName,
     deleteConfigByName,
@@ -45,12 +34,6 @@ export function ReceiptForm() {
   const [isGenerating, setIsGenerating] = useState(false)
   const [progress, setProgress] = useState({ current: 0, total: 0 })
   const [generationError, setGenerationError] = useState<string | null>(null)
-
-  const handleReset = () => {
-    if (confirm('Êtes-vous sûr de vouloir réinitialiser le formulaire ? Cette action ne peut pas être annulée.')) {
-      resetForm()
-    }
-  }
 
   async function handleGenerateBatch() {
     // Reset state
@@ -382,35 +365,13 @@ export function ReceiptForm() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <Label htmlFor="date-debut">Date de début *</Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      id="date-debut"
-                      variant="outline"
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !formData.dateDebut && "text-muted-foreground",
-                        errors.dateRange && "border-destructive"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {formData.dateDebut ? (
-                        format(formData.dateDebut, 'd MMMM yyyy', { locale: fr })
-                      ) : (
-                        <span>Sélectionner une date</span>
-                      )}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={formData.dateDebut}
-                      onSelect={(date) => updateDateField('dateDebut', date)}
-                      locale={fr}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
+                <DatePicker
+                  id="date-debut"
+                  date={formData.dateDebut}
+                  onSelect={(date) => updateDateField('dateDebut', date)}
+                  placeholder="Sélectionner une date"
+                  className={cn(errors.dateRange && "border-destructive")}
+                />
                 {errors.dateRange && (
                   <p className="text-sm text-destructive mt-1">{errors.dateRange}</p>
                 )}
@@ -418,35 +379,13 @@ export function ReceiptForm() {
 
               <div>
                 <Label htmlFor="date-fin">Date de fin *</Label>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      id="date-fin"
-                      variant="outline"
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !formData.dateFin && "text-muted-foreground",
-                        errors.dateRange && "border-destructive"
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {formData.dateFin ? (
-                        format(formData.dateFin, 'd MMMM yyyy', { locale: fr })
-                      ) : (
-                        <span>Sélectionner une date</span>
-                      )}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      selected={formData.dateFin}
-                      onSelect={(date) => updateDateField('dateFin', date)}
-                      locale={fr}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
+                <DatePicker
+                  id="date-fin"
+                  date={formData.dateFin}
+                  onSelect={(date) => updateDateField('dateFin', date)}
+                  placeholder="Sélectionner une date"
+                  className={cn(errors.dateRange && "border-destructive")}
+                />
               </div>
             </div>
 
@@ -504,34 +443,6 @@ export function ReceiptForm() {
           </div>
         )}
       </div>
-      </div>
-
-      {/* Sticky action buttons */}
-      <div className="fixed bottom-6 right-6 flex flex-col sm:flex-row gap-3 z-50">
-        {saveSuccess && (
-          <div className="hidden sm:flex items-center gap-2 text-emerald-600 font-light bg-emerald-50 px-3 py-2 rounded-full shadow-lg border border-emerald-200">
-            <Check className="h-4 w-4" />
-            <span className="text-sm">Sauvegardé</span>
-          </div>
-        )}
-        <Button
-          onClick={handleReset}
-          variant="outline"
-          size="lg"
-          disabled={isSaving}
-          className="border-stone-300 hover:bg-stone-50 font-light shadow-lg bg-white"
-        >
-          <span className="hidden sm:inline">Réinitialiser</span>
-          <span className="sm:hidden">Reset</span>
-        </Button>
-        <Button
-          onClick={save}
-          disabled={isSaving}
-          size="lg"
-          className="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-light transition-all shadow-lg hover:shadow-xl"
-        >
-          {isSaving ? 'Enregistrement...' : 'Enregistrer'}
-        </Button>
       </div>
     </>
   )
