@@ -96,8 +96,9 @@ export function ReceiptForm() {
           <AccordionTrigger className="px-8 sm:px-12 py-6 hover:bg-stone-50 transition-colors">
             <span className="text-lg font-light text-stone-900">Propriétaire</span>
           </AccordionTrigger>
-          <AccordionContent className="px-8 sm:px-12 py-8 bg-stone-50/50">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <AccordionContent className="px-8 sm:px-12 py-8 bg-stone-50/30">
+            <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <Label htmlFor="prop-nom">Nom *</Label>
                 <Input
@@ -140,7 +141,7 @@ export function ReceiptForm() {
               )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <Label htmlFor="prop-cp">Code postal *</Label>
                 <Input
@@ -169,19 +170,17 @@ export function ReceiptForm() {
                 )}
               </div>
             </div>
+            </div>
           </AccordionContent>
         </AccordionItem>
 
         {/* Section 2: Locataire */}
-        <AccordionItem value="locataire" className="border border-green-100 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
-          <AccordionTrigger className="px-4 hover:bg-green-50/50">
-            <div className="flex items-center gap-2">
-              <span className="text-green-600">🏠</span>
-              <span>Locataire</span>
-            </div>
+        <AccordionItem value="locataire" className="border-0">
+          <AccordionTrigger className="px-8 sm:px-12 py-6 hover:bg-stone-50 transition-colors">
+            <span className="text-lg font-light text-stone-900">Locataire</span>
           </AccordionTrigger>
-          <AccordionContent className="space-y-4 pt-4 bg-gradient-to-br from-green-50/30 to-emerald-50/30 rounded-md px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <AccordionContent className="px-8 sm:px-12 py-8 bg-stone-50/30">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <Label htmlFor="loc-nom">Nom *</Label>
                 <Input
@@ -213,14 +212,12 @@ export function ReceiptForm() {
         </AccordionItem>
 
         {/* Section 3: Bien */}
-        <AccordionItem value="bien" className="border border-purple-100 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
-          <AccordionTrigger className="px-4 hover:bg-purple-50/50">
-            <div className="flex items-center gap-2">
-              <span className="text-purple-600">🏢</span>
-              <span>Bien loué</span>
-            </div>
+        <AccordionItem value="bien" className="border-0">
+          <AccordionTrigger className="px-8 sm:px-12 py-6 hover:bg-stone-50 transition-colors">
+            <span className="text-lg font-light text-stone-900">Bien loué</span>
           </AccordionTrigger>
-          <AccordionContent className="space-y-4 pt-4 bg-gradient-to-br from-purple-50/30 to-pink-50/30 rounded-md px-4">
+          <AccordionContent className="px-8 sm:px-12 py-8 bg-stone-50/30">
+            <div className="space-y-6">
             <div>
               <Label htmlFor="bien-adresse">Adresse *</Label>
               <Input
@@ -235,7 +232,7 @@ export function ReceiptForm() {
               )}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <Label htmlFor="bien-cp">Code postal *</Label>
                 <Input
@@ -264,19 +261,18 @@ export function ReceiptForm() {
                 )}
               </div>
             </div>
+            </div>
           </AccordionContent>
         </AccordionItem>
 
         {/* Section 4: Loyer */}
-        <AccordionItem value="loyer" className="border border-amber-100 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
-          <AccordionTrigger className="px-4 hover:bg-amber-50/50">
-            <div className="flex items-center gap-2">
-              <span className="text-amber-600">💰</span>
-              <span>Loyer et charges</span>
-            </div>
+        <AccordionItem value="loyer" className="border-0">
+          <AccordionTrigger className="px-8 sm:px-12 py-6 hover:bg-stone-50 transition-colors">
+            <span className="text-lg font-light text-stone-900">Loyer et charges</span>
           </AccordionTrigger>
-          <AccordionContent className="space-y-4 pt-4 bg-gradient-to-br from-amber-50/30 to-orange-50/30 rounded-md px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <AccordionContent className="px-8 sm:px-12 py-8 bg-stone-50/30">
+            <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <Label htmlFor="loyer-hc">Loyer hors charges (€) *</Label>
                 <Input
@@ -309,22 +305,21 @@ export function ReceiptForm() {
               </div>
             </div>
 
-            <div className="pt-2 text-lg font-semibold">
-              Total: {(formData.loyer.loyerHorsCharges + formData.loyer.charges).toFixed(2)} €
+            <div className="pt-2 text-lg font-light text-stone-900">
+              Total: <span className="font-normal">{(formData.loyer.loyerHorsCharges + formData.loyer.charges).toFixed(2)} €</span>
+            </div>
             </div>
           </AccordionContent>
         </AccordionItem>
 
         {/* Section 5: Période de génération */}
-        <AccordionItem value="periode" className="border border-teal-100 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
-          <AccordionTrigger className="px-4 hover:bg-teal-50/50">
-            <div className="flex items-center gap-2">
-              <span className="text-teal-600">📅</span>
-              <span>Période de génération</span>
-            </div>
+        <AccordionItem value="periode" className="border-0">
+          <AccordionTrigger className="px-8 sm:px-12 py-6 hover:bg-stone-50 transition-colors">
+            <span className="text-lg font-light text-stone-900">Période de génération</span>
           </AccordionTrigger>
-          <AccordionContent className="space-y-4 pt-4 bg-gradient-to-br from-teal-50/30 to-cyan-50/30 rounded-md px-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <AccordionContent className="px-8 sm:px-12 py-8 bg-stone-50/30">
+            <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <Label htmlFor="date-debut">Date de début *</Label>
                 <Popover>
@@ -396,7 +391,7 @@ export function ReceiptForm() {
             </div>
 
             {formData.monthlyReceipts && formData.monthlyReceipts.length > 0 && (
-              <div className="pt-4 text-sm text-muted-foreground">
+              <div className="pt-4 text-sm text-stone-600 font-light">
                 ✓ {formData.monthlyReceipts.length} quittance{formData.monthlyReceipts.length > 1 ? 's' : ''} {formData.monthlyReceipts.length > 1 ? 'seront générées' : 'sera générée'}
                 {(() => {
                   const partial = formData.monthlyReceipts.filter(r => r.period.isPartial).length
@@ -408,31 +403,33 @@ export function ReceiptForm() {
                 })()}
               </div>
             )}
+            </div>
           </AccordionContent>
         </AccordionItem>
       </Accordion>
 
       {/* Batch Generation Section */}
-      <div className="mt-8 p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100 space-y-3">
-        <div className="flex items-center gap-2 mb-3">
-          <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-          </svg>
-          <h3 className="font-semibold text-blue-900">Génération des documents</h3>
+      <div className="px-8 sm:px-12 py-8 border-t border-stone-200 bg-stone-50/30 space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-lg font-light text-stone-900">Génération des documents</h3>
+          <p className="text-sm text-stone-600 font-light">
+            Téléchargez toutes vos quittances au format PDF
+          </p>
         </div>
+
         <Button
           type="button"
           onClick={handleGenerateBatch}
           disabled={isGenerating || !formData.dateDebut || !formData.dateFin}
-          className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md hover:shadow-lg transition-all duration-200"
+          className="w-full bg-stone-900 hover:bg-stone-800 text-white font-light transition-colors"
           size="lg"
         >
-          {isGenerating ? 'Génération en cours...' : '📄 Générer les quittances'}
+          {isGenerating ? 'Génération en cours...' : 'Générer les quittances'}
         </Button>
 
         {isGenerating && (
-          <div className="bg-blue-100/50 backdrop-blur-sm p-3 rounded-lg">
-            <p className="text-sm text-blue-900 flex items-center gap-2 font-medium">
+          <div className="bg-stone-100 p-4 rounded">
+            <p className="text-sm text-stone-700 flex items-center gap-2 font-light">
               <Loader2 className="h-4 w-4 animate-spin" />
               Génération en cours... {progress.current}/{progress.total}
             </p>
@@ -440,46 +437,46 @@ export function ReceiptForm() {
         )}
 
         {generationError && (
-          <div className="bg-red-50 border border-red-200 p-3 rounded-lg">
-            <p className="text-sm text-red-700 font-medium">
-              ⚠️ {generationError}
+          <div className="bg-red-50 border border-red-200 p-4 rounded">
+            <p className="text-sm text-red-700 font-light">
+              {generationError}
             </p>
           </div>
         )}
       </div>
-      </Card>
+      </div>
 
       {/* Sticky save button at bottom */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg border-t border-blue-100 shadow-2xl p-4 z-50">
-        <div className="max-w-2xl mx-auto flex items-center justify-between gap-4">
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-stone-200 p-6 z-50">
+        <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             {saveSuccess && (
-              <div className="flex items-center gap-2 bg-green-50 px-3 py-1.5 rounded-full border border-green-200">
-                <Check className="h-4 w-4 text-green-600" />
-                <span className="text-sm text-green-700 font-medium">
+              <div className="flex items-center gap-2 text-stone-600 font-light">
+                <Check className="h-4 w-4" />
+                <span className="text-sm">
                   Données sauvegardées
                 </span>
               </div>
             )}
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             <Button
               onClick={handleReset}
               variant="outline"
               size="lg"
               disabled={isSaving}
-              className="border-slate-300 hover:bg-slate-50"
+              className="border-stone-300 hover:bg-stone-50 font-light"
             >
-              🔄 Réinitialiser
+              Réinitialiser
             </Button>
             <Button
               onClick={save}
               disabled={isSaving}
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-md hover:shadow-lg transition-all duration-200"
+              className="bg-stone-900 hover:bg-stone-800 text-white font-light transition-colors"
             >
-              {isSaving ? '💾 Enregistrement...' : '💾 Enregistrer'}
+              {isSaving ? 'Enregistrement...' : 'Enregistrer'}
             </Button>
           </div>
         </div>
