@@ -11,6 +11,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\""
   },
   "dependencies": {
+    "@react-pdf/renderer": "4.3.2",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "react": "^18.3.1",
